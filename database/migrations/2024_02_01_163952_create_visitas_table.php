@@ -11,12 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('visitas', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('guia_id');
+            $table->dateTime("fecha_visita");
+            $table->boolean("cancelado")->default(false);
+            $table->integer("n_entradas");
+            $table->unsignedBigInteger('ruta_id')->nullable(false);
             $table->timestamps();
+            $table->foreign('ruta_id')->references('id')->on('ruta');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('guia_id')->references('id')->on('guias');
+            $table->foreign('guia_id')->references('id')->on('users');
         });
     }
 
@@ -25,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('visitas');
     }
 };

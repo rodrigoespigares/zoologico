@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cuidadores', function (Blueprint $table) {
+        Schema::create('ruta', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('password');
-            $table->string('nombre');
-            $table->string('apellidos');
+            $table->string("nombre");
+            $table->string("descripcion");
+            $table->string("foto");
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cuidadores');
+        Schema::dropIfExists('ruta');
     }
 };

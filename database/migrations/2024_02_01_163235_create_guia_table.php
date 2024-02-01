@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('animales', function (Blueprint $table) {
+        Schema::create('guia', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('foto')->nullable();
-            $table->string('categoria');
-            $table->unsignedBigInteger('cuidadores_id');
+            $table->unsignedBigInteger('guia_id');
+            $table->integer('n_clientes');
+            $table->integer('disponibles');
             $table->timestamps();
-            $table->foreign('cuidadores_id')->references('id')->on('cuidadores');
+            $table->foreign('guia_id')->references('id')->on('users');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('animales');
+        Schema::dropIfExists('guia');
     }
 };

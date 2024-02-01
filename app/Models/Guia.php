@@ -9,6 +9,11 @@ class Guia extends Model
 {
     use HasFactory;
     protected $table = 'guia';
-    protected $primaryKey = "user_id, guia_id";
-    protected $hidden = ["user_id", "guia_id"];
+    protected $fillable = [
+        "guia_id",
+        "n_clientes",
+        "disponibles",
+    ];
+    protected $primaryKey = "id";
+    protected $guarded = ['id'];
 }

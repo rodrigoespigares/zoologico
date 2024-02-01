@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Animal extends Model
+class Visita extends Model
 {
     use HasFactory;
-    protected $table = 'animales';
+    protected $table = 'visitas';
+    
+
     protected $fillable = [
-        "nombre",
-        "n_cientifico",
-        "descripcion",
-        "foto",
-        "visitable",
-        "cuidador_id",
+        "user_id",
+        "guia_id",
+        "fecha_visita",
+        "cancelado",
+        "n_entradas",
         "ruta_id",
+
     ];
     protected $primaryKey = "id";
     protected $guarded = ['id'];

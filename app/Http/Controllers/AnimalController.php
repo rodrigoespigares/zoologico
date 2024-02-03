@@ -83,9 +83,11 @@ class AnimalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id,Request $request)
     {
-        
+        ##VALIDAR
+        $this->repository->edit($id,$request);
+        return redirect('/verlistadoanimales')->with('success','Se ha añadido un nuevo contacto');
     }
 
     /**

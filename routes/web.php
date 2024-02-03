@@ -35,12 +35,14 @@ Route::controller(AnimalController::class)->group(function () {
     Route::get('/animales/ver/{id}','show'); 
     Route::get('/animales/crear_animal','create')->middleware('checkrole:cuidador'); 
     Route::post('/animales/alamacenar','store')->middleware('checkrole:cuidador,admin'); 
-    Route::get('/animales/destroy/{id}','destroy')->middleware('checkrole:cuidador'); 
+    Route::get('/animales/destroy/{id}','destroy')->middleware('checkrole:cuidador,admin'); 
+    Route::post('/animales/editar/{id}','edit');
 });
 
 Route::controller(AdministradorController::class)->group(function () {
     Route::get('/administrador','index'); 
     Route::get('/verlistadoanimales', 'listaAnimales');
+    Route::get('/editarlistadoanimales/{id}', 'listaAnimales');
 });
 
 require __DIR__.'/auth.php';

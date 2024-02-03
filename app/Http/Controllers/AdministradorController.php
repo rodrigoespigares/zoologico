@@ -30,9 +30,14 @@ class AdministradorController extends Controller
         };
         return view('admin.panel', ['opciones'=>$opciones]);
     }
-    public function listaAnimales() {
+    public function listaAnimales($id = null) {
         $result = $this->rAnimales->getAll();
         $rutas = $this->repoRutas->getAll();
-        return view('admin.animales', ['resultados'=>$result, 'rutas'=>$rutas]);
+        if(!isset($id)){
+            return view('admin.animales', ['resultados'=>$result, 'rutas'=>$rutas]);
+        }else{
+            $animal = $this->rAnimales->detalle($id);
+            return view('admin.animales', ['resultados'=>$result, 'rutas'=>$rutas, 'animal'=>$animal]);
+        }
     }
 }

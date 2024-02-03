@@ -18,10 +18,8 @@
                                 <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
                                 <td>
                                     <a href="/animales/ver/{{$resultado->id}}">Ver</a>
-                                    @if (auth()->user()->obtenerRol()=='cuidador')
-                                        <a href="/animales/edit/{{$resultado->id}}">Editar</a>
-                                        <a href="/animales/destroy/{{$resultado->id}}">No visitable</a>
-                                    @endif
+                                    <a href="/editarlistadoanimales/{{$resultado->id}}">Editar</a>
+                                    <a href="/animales/destroy/{{$resultado->id}}">No visitable</a>
                                 </td>
                             </tr>
                         @endif
@@ -29,7 +27,12 @@
                 </table>
             </div>
             <div>
-                @include('animales.create')
+                @if(request()->is('verlistadoanimales'))
+                    @include('animales.create')
+                @else
+                    @include('animales.edit', ['animal' => $animal[0]])
+                    <a href="/verlistadoanimales">Cancelar</a>
+                @endif
             </div>
         </div>
 

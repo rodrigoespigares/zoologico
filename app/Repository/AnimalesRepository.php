@@ -33,6 +33,15 @@ use App\Models\Animal;
         public function detalle($id) {
             return Animal::where('id',$id)->get();
         }
+        public function edit($id,$data) {
+            Animal::where('id', $id)->update([
+                'nombre'=>$data['nombre'],
+                'n_cientifico' => $data['n_cientifico'],
+                'descripcion' => $data['descripcion'],
+                'visitable' => $data['visitable']=='true'?true:false,
+                'ruta_id' => $data['ruta'],
+            ]);
+        }
     }
 
 ?>

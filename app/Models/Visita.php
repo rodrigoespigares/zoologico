@@ -18,7 +18,6 @@ class Visita extends Model
         "cancelado",
         "n_entradas",
         "ruta_id",
-
     ];
     protected $primaryKey = "id";
     protected $guarded = ['id'];

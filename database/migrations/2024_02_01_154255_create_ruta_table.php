@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("nombre");
             $table->string("descripcion");
             $table->string("foto");
+            $table->boolean("visitable")->default(true);
             $table->timestamps();
         });
     }

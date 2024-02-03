@@ -4,8 +4,7 @@
     <table class="table">
         <tr>
             <th>Nombre</th>
-            <th>Nombre Cientifico</th>
-            <th>Descripcion</th>
+            <th>Descripción</th>
             <th>Foto</th>
         </tr>
         @foreach ($resultados as $resultado)
@@ -16,10 +15,12 @@
                     <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
                     <td>
                         <a href="/rutas/ver/{{$resultado->id}}">Ver</a>
-                        @if (auth()->user()->obtenerRol()=='admin' || auth()->user()->obtenerRol()=='guia')
-                            <a href="/rutas/edit/{{$resultado->id}}">Editar</a>
-                            <a href="/rutas/destroy/{{$resultado->id}}">Eliminar</a>
-                        @endif
+                        @auth
+                            @if (auth()->user()->obtenerRol()=='admin' || auth()->user()->obtenerRol()=='guia')
+                                <a href="/rutas/edit/{{$resultado->id}}">Editar</a>
+                                <a href="/rutas/destroy/{{$resultado->id}}">Eliminar</a>
+                            @endif
+                        @endauth
                     </td>
                 </tr>
             @endif

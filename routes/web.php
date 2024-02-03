@@ -50,6 +50,8 @@ Route::controller(RutasController::class)->group(function () {
 
 Route::controller(AdministradorController::class)->group(function () {
     Route::get('/administrador','index');
+    
+    Route::get('/guia/preferencias','index');
     Route::get('/verlistadoanimales', 'listaAnimales');
     Route::get('/editarlistadoanimales/{id}', 'listaAnimales');
     Route::get('/verlistadorutas', 'listaRutas');

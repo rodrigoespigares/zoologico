@@ -7,16 +7,18 @@
                         <th>Nombre</th>
                         <th>Descripcion</th>
                         <th>Foto</th>
+                        <th>Visitable</th>
                     </tr>
                     @foreach ($resultados as $resultado)
                             <tr>
                                 <td>{{$resultado->nombre}}</td>
                                 <td>{{$resultado->descripcion}}</td>
                                 <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
+                                <td>{{$resultado->visitable == 1?"Si":"No"}}</td>
                                 <td>
                                     <a href="/rutas/ver/{{$resultado->id}}">Ver</a>
                                     <a href="/editarlistadorutas/{{$resultado->id}}">Editar</a>
-                                    <a href="/rutas/destroy/{{$resultado->id}}">Eliminar</a>
+                                    <a href="/rutas/destroy/{{$resultado->id}}">No visitable</a>
                                 </td>
                             </tr>
 

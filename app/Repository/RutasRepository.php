@@ -17,7 +17,7 @@ use App\Models\Ruta;
             Ruta::create([
                 'nombre' => $ruta['nombre'],
                 'descripcion' => $ruta['descripcion'],
-                'foto' => $ruta['foto'],
+                'foto' => isset($ruta['foto'])?$ruta['foto']:"sin_foto.png",
             ]);
         }
         public function detalle($id) {
@@ -26,11 +26,14 @@ use App\Models\Ruta;
         public function edit($id,$data) {
             Ruta::where('id', $id)->update([
                 'nombre'=>$data['nombre'],
-                'descripcion' => $data['descripcion']
+                'descripcion' => $data['descripcion'],
+                'visitable'=>$data['visitable']=="true"?true:false
             ]);
         }
         public function eliminar($id) {
-            Ruta::where('id', $id)->delete();
+            Ruta::where('id', $id)->update([
+                'visitable'=>false,
+            ]);;
         }
     }
 

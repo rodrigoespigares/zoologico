@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Repository\AnimalesRepository;
 use App\Repository\RutasRepository;
+use App\Repository\GuiaRepository;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ class AdministradorController extends Controller
     {
         $opciones = match (Auth::user()->rol) {
             "cuidador" => ["animales"=>"/verlistadoanimales"],
-            "guia" => ["rutas"=>"/verlistadorutas"],
+            "guia" => ["rutas"=>"/verlistadorutas","preferencias"=>"/guia/preferencias"],
             "admin" => ["rutas"=>"/verlistadorutas","animales"=>"/verlistadoanimales","usuarios"=>"/verlistadousuarios"]
         };
         return view('admin.panel', ['opciones'=>$opciones]);
@@ -57,5 +58,8 @@ class AdministradorController extends Controller
             $user = User::where('id',$id)->get();
             return view('admin.user', ['resultados'=>$result, 'user'=>$user]);
         }
+    }
+    public function preferencias(){
+        
     }
 }

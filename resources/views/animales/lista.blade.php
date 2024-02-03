@@ -17,10 +17,12 @@
                     <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
                     <td>
                         <a href="/animales/ver/{{$resultado->id}}">Ver</a>
-                        @if (auth()->user()->obtenerRol()=='cuidador')
-                            <a href="/animales/edit/{{$resultado->id}}">Editar</a>
-                            <a href="/animales/destroy/{{$resultado->id}}">No visitable</a>
-                        @endif
+                        @auth
+                            @if (auth()->user()->obtenerRol()=='cuidador')
+                                <a href="/animales/edit/{{$resultado->id}}">Editar</a>
+                                <a href="/animales/destroy/{{$resultado->id}}">No visitable</a>
+                            @endif
+                        @endauth
                     </td>
                 </tr>
             @endif

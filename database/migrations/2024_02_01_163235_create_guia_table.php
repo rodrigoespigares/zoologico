@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('guia_id');
             $table->integer('n_clientes');
             $table->integer('disponibles');
+            $table->boolean("activo")->default(true);
             $table->timestamps();
             $table->foreign('guia_id')->references('id')->on('users');
         });

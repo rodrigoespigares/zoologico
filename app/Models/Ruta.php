@@ -13,6 +13,7 @@ class Ruta extends Model
         "nombre",
         "descripcion",
         "foto",
+        "visitable"
     ];
     protected $primaryKey = "id";
     protected $guarded = ['id'];

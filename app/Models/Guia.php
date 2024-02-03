@@ -13,6 +13,7 @@ class Guia extends Model
         "guia_id",
         "n_clientes",
         "disponibles",
+        "visitable",
     ];
     protected $primaryKey = "id";
     protected $guarded = ['id'];

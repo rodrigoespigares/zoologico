@@ -29,9 +29,6 @@ class RutasController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // ajusta las reglas según tus necesidades
-        ]);
 
         if ($request->hasFile('foto')) {
             $imagen = $request->file('foto');
@@ -41,14 +38,14 @@ class RutasController extends Controller
             } catch (\Exception $e) {
                 return back()->withError('Error al almacenar la imagen: ' . $e->getMessage());
             }
-
+            $validate['foto']=$nombreImagen;
             // Puedes almacenar el nombre de la imagen en tu base de datos si es necesario
         }
         $validate = $request->validate([
             'nombre' => "required | min:3 | max:25",
             'descripcion' => "required"
         ]);
-        $validate['foto']=$nombreImagen;
+        
         $this->repoRutas->insertar($validate);
         //return redirect()->action([AnimalController::class, 'index']);
         return redirect('/verlistadorutas')->with('success','Se ha añadido una nueva ruta');
@@ -57,7 +54,7 @@ class RutasController extends Controller
     {
         ##VALIDAR
         $this->repoRutas->edit($id,$request);
-        return redirect('/verlistarutas')->with('success','Se ha añadido un nuevo contacto');
+        return redirect('/verlistadorutas')->with('success','Se ha añadido un nuevo contacto');
     }
     public function update(Request $request, string $id)
     {
@@ -66,6 +63,6 @@ class RutasController extends Controller
     public function destroy(string $id)
     {
         $this->repoRutas->eliminar($id);
-        return redirect('/rutas')->with('success','Se ha añadido un nuevo contacto');
+        return redirect('/verlistadorutas')->with('success','Se ha añadido un nuevo contacto');
     }
 }

@@ -25,6 +25,13 @@
                 <label for="foto">Foto</label>
                 <input type="file" class="form-control text-primary" name="foto" id="foto">
             </div>
+            <div class="form-group">
+                <label for="visitable">Visitable</label>
+                <select name="visitable" id="visitable">
+                    <option value="true" {{ $ruta->visitable == true?"selected":""}}>Si</option>
+                    <option value="false" {{ $ruta->visitable == false?"selected":""}}>No</option>
+                </select>
+            </div>
 
         <button type="submit" class="btn btn-primary-outline">Guardar</button>
         </form>

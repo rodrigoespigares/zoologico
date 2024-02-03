@@ -5,23 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SubirFotos;
 use App\Models\User;
 use App\Repository\AnimalesRepository;
+use App\Repository\RutasRepository;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
     protected $user;
     protected $repository;
-    public function __construct(AnimalesRepository $repository, User $user)
+    protected $repoRutas;
+    public function __construct(AnimalesRepository $repository, User $user, RutasRepository $repoRutas)
     {
         $this->repository = $repository;
         $this->user = $user;
+        $this->repoRutas = $repoRutas;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $result = $this->repository->getAll();
+        return view('animales.lista', ['resultados' => $result]);
     }
 
     /**
@@ -29,7 +33,8 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        return view('animales.create');
+        $result = $this->repoRutas->getAll();
+        return view('animales.create', ['rutas'=>$result]);
     }
 
     /**
@@ -46,7 +51,7 @@ class AnimalController extends Controller
             $imagen = $request->file('foto');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
             try {
-                $imagen->storeAs('./', $nombreImagen);
+                $imagen->move(public_path('img/subidas/animales'), $nombreImagen);
             } catch (\Exception $e) {
                 return back()->withError('Error al almacenar la imagen: ' . $e->getMessage());
             }
@@ -59,12 +64,12 @@ class AnimalController extends Controller
             'descripcion' => "required",
             'visitable' => "required"
         ]);
-        $validate['foto']=asset('img/subidas');
+        $validate['foto']=$nombreImagen;
         $validate['cuidador_id']=$this->user->obtenerIdUsuarioActual();
         $validate['ruta_id']=1;
         $this->repository->insertar($validate);
         //return redirect()->action([AnimalController::class, 'index']);
-        return redirect('/animales/crear_animal')->with('success','Se ha añadido un nuevo contacto');
+        return redirect('/animales/crear_animal')->with('success','Se ha añadido un nuevo animal');
     }
 
     /**
@@ -72,7 +77,8 @@ class AnimalController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $result = $this->repository->detalle($id);
+        return view('animales.detalle',['animales'=>$result]);
     }
 
     /**
@@ -80,7 +86,7 @@ class AnimalController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
     }
 
     /**
@@ -96,6 +102,7 @@ class AnimalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->repository->noVisitable($id);
+        return redirect('/animales')->with('success','Se ha añadido un nuevo contacto');
     }
 }

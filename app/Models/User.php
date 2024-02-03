@@ -47,17 +47,27 @@ class User extends Authenticatable
     ];
 
     public function obtenerIdUsuarioActual()
-{
-    // Verifica si hay un usuario autenticado
-    if (Auth::check()) {
-        // Obtiene el ID del usuario autenticado
-        $idUsuario = Auth::id();
-        
-        // Puedes usar $idUsuario según tus necesidades
-        return $idUsuario;
-    } else {
-        // No hay usuario autenticado
-        return "No hay usuario autenticado";
+    {
+        // Verifica si hay un usuario autenticado
+        if (Auth::check()) {
+            // Obtiene el ID del usuario autenticado
+            $idUsuario = Auth::id();
+            
+            // Puedes usar $idUsuario según tus necesidades
+            return $idUsuario;
+        } else {
+            // No hay usuario autenticado
+            return "No hay usuario autenticado";
+        }
     }
-}
+    public function obtenerRol ()
+    {
+        // Verifica si hay un usuario autenticado
+        if (Auth::check()) {
+            return $this->attributes['rol'];
+        } else {
+            // No hay usuario autenticado
+            return false;
+        }
+    }
 }

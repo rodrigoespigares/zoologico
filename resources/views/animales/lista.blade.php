@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="slot">
+        
     <table class="table">
         <tr>
             <th>Nombre</th>
@@ -8,20 +9,21 @@
             <th>Foto</th>
         </tr>
         @foreach ($resultados as $resultado)
-            <tr>
-                <td>{{$resultado->nombre}}</td>
-                <td>{{$resultado->n_cientifico}}</td>
-                <td>{{$resultado->descripcion}}</td>
-                <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
-                <td>{{$resultado->visitable}}</td>
-                <td>{{$resultado->cuidador_id}}</td>
-                <td>{{$resultado->ruta_id}}</td>
-                <td>
-                    <a href="/contactos/show/{{$resultado->id}}">Ver</a>
-                    <a href="/contactos/edit/{{$resultado->id}}">Editar</a>
-                    <a href="/contactos/destroy/{{$resultado->id}}">Borrar</a>
-                </td>
-            </tr>
+            @if ($resultado->visitable == 1)
+                <tr>
+                    <td>{{$resultado->nombre}}</td>
+                    <td>{{$resultado->n_cientifico}}</td>
+                    <td>{{$resultado->descripcion}}</td>
+                    <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
+                    <td>
+                        <a href="/animales/ver/{{$resultado->id}}">Ver</a>
+                        @if (auth()->user()->obtenerRol()=='cuidador')
+                            <a href="/animales/edit/{{$resultado->id}}">Editar</a>
+                            <a href="/animales/destroy/{{$resultado->id}}">No visitable</a>
+                        @endif
+                    </td>
+                </tr>
+            @endif
         @endforeach
     </table>
 </x-slot>

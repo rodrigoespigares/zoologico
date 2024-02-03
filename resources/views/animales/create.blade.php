@@ -38,6 +38,14 @@
                             <option value="false">No</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="ruta">Ruta</label>
+                        <select name="ruta" id="ruta">
+                            @foreach ($rutas as $ruta)
+                                <option value="{{$ruta->id}}">{{$ruta->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     
                 <button type="submit" class="btn btn-primary-outline">Añadir</button>
                 </form>

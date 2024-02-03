@@ -2,18 +2,18 @@
 
     namespace App\Repository;
 
-use App\Models\Animal;
+use App\Models\Ruta;
 
-    class AnimalesRepository{
-        protected Animal $model;
-        public function __construct(Animal $model)
+    class RutasRepository{
+        protected Ruta $model;
+        public function __construct(Ruta $model)
         {
             $this->model = $model;   
         }
         public function getAll(){
-            return Animal::all();
+            return Ruta::all();
         }
-        public function insertar($animal) {
+        /* public function insertar($animal) {
             Animal::create([
                 'nombre' => $animal['nombre'],
                 'n_cientifico' => $animal['n_cientifico'],
@@ -24,15 +24,7 @@ use App\Models\Animal;
                 'ruta_id' => $animal['ruta_id'],
             ]);
             
-        }
-        public function noVisitable($id) {
-            Animal::where('id', $id)->update([
-                'visitable' => false,
-            ]);
-        }
-        public function detalle($id) {
-            return Animal::where('id',$id)->get();
-        }
+        } */
     }
 
 ?>

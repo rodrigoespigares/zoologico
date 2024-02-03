@@ -30,15 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
-Route::controller(BaseController::class)->group(function () {
-   Route::get('/animales','index'); 
-});
-
 Route::controller(AnimalController::class)->group(function () {
-    Route::get('/animales/crear_animal','create'); 
-    Route::post('/animales/alamacenar','store'); 
- });
+    Route::get('/animales','index'); 
+    Route::get('/animales/ver/{id}','show'); 
+    Route::get('/animales/crear_animal','create')->middleware('checkrole:cuidador'); 
+    Route::post('/animales/alamacenar','store')->middleware('checkrole:cuidador'); 
+    Route::get('/animales/destroy/{id}','destroy')->middleware('checkrole:cuidador'); 
+});
 
 require __DIR__.'/auth.php';

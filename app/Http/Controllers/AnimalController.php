@@ -42,7 +42,6 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // ajusta las reglas según tus necesidades
         ]);
@@ -69,7 +68,7 @@ class AnimalController extends Controller
         $validate['ruta_id']=1;
         $this->repository->insertar($validate);
         //return redirect()->action([AnimalController::class, 'index']);
-        return redirect('/animales/crear_animal')->with('success','Se ha añadido un nuevo animal');
+        return redirect('/verlistadoanimales')->with('success','Se ha añadido un nuevo animal');
     }
 
     /**

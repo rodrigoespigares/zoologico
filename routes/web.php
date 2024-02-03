@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +34,13 @@ Route::controller(AnimalController::class)->group(function () {
     Route::get('/animales','index'); 
     Route::get('/animales/ver/{id}','show'); 
     Route::get('/animales/crear_animal','create')->middleware('checkrole:cuidador'); 
-    Route::post('/animales/alamacenar','store')->middleware('checkrole:cuidador'); 
+    Route::post('/animales/alamacenar','store')->middleware('checkrole:cuidador,admin'); 
     Route::get('/animales/destroy/{id}','destroy')->middleware('checkrole:cuidador'); 
+});
+
+Route::controller(AdministradorController::class)->group(function () {
+    Route::get('/administrador','index'); 
+    Route::get('/verlistadoanimales', 'listaAnimales');
 });
 
 require __DIR__.'/auth.php';

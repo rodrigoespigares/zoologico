@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Repository\AnimalesRepository;
+use App\Repository\RutasRepository;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class AdministradorController extends Controller
+{
+    protected $user;
+    protected $rAnimales;
+    protected $repoRutas;
+    public function __construct(AnimalesRepository $rAnimales, User $user, RutasRepository $repoRutas)
+    {
+        $this->rAnimales = $rAnimales;
+        $this->user = $user;
+        $this->repoRutas = $repoRutas;
+    }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $opciones = match (Auth::user()->rol) {
+            "cuidador" => ["animales"=>"/verlistadoanimales"],
+            "guia" => ["rutas"=>"/verlistadorutas"],
+            "admin" => ["rutas"=>"/verlistadorutas","animales"=>"/verlistadoanimales","usuarios"=>"/verlistadousuarios"]
+        };
+        return view('admin.panel', ['opciones'=>$opciones]);
+    }
+    public function listaAnimales() {
+        $result = $this->rAnimales->getAll();
+        $rutas = $this->repoRutas->getAll();
+        return view('admin.animales', ['resultados'=>$result, 'rutas'=>$rutas]);
+    }
+}

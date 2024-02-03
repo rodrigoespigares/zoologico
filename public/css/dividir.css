@@ -1,0 +1,7 @@
+.dividir{
+    display: flex;
+    justify-content: space-around;
+}
+.dividir__long{
+    overflow-y: scroll;
+}

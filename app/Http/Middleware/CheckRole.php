@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
-    public function handle($request, Closure $next, $role)
-{
-    if (auth()->check() && auth()->user()->rol === $role) {
-        return $next($request);
-    }
+    public function handle($request, Closure $next, ...$roles)
+    {
+        if (auth()->check() && in_array(Auth::user()->rol, $roles)) {
+            return $next($request);
+        }
 
-    return redirect('/'); // O la ruta que desees para redirigir en caso de acceso no autorizado
-}
+        return redirect('/');
+    }
 }

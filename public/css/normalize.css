@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Montserrat:wght@200;400;600&display=swap');
 *{
-    /*Establezco el tamaño a 10px con el porcentaje*/
-    font-size: 62.5%;
     /*Elimino la decoracion de las listas*/
     list-style: none;
     /* Establezco padding y margin a 0*/
@@ -59,4 +57,7 @@ p{
 }
 a{
     color: var(--secondary);
+}
+main{
+    grid-column: 1/-1;
 }

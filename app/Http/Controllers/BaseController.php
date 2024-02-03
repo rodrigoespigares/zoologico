@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Repository\AnimalesRepository;
 class BaseController extends Controller
 {
+    protected $repository;
+    public function __construct(AnimalesRepository $repository)
+    {
+        $this->repository = $repository;
+
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $result = $this->repository->getAll();
+        return view('animales.lista', ['resultados' => $result]);
+
     }
 
     /**

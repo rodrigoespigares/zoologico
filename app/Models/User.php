@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,6 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'subname',
         'email',
         'password',
         'rol',
@@ -43,4 +45,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function obtenerIdUsuarioActual()
+{
+    // Verifica si hay un usuario autenticado
+    if (Auth::check()) {
+        // Obtiene el ID del usuario autenticado
+        $idUsuario = Auth::id();
+        
+        // Puedes usar $idUsuario según tus necesidades
+        return $idUsuario;
+    } else {
+        // No hay usuario autenticado
+        return "No hay usuario autenticado";
+    }
+}
 }

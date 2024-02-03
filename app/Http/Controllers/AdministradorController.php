@@ -40,4 +40,22 @@ class AdministradorController extends Controller
             return view('admin.animales', ['resultados'=>$result, 'rutas'=>$rutas, 'animal'=>$animal]);
         }
     }
+    public function listaRutas($id = null){
+        $result = $this->repoRutas->getAll();
+        if(!isset($id)){
+            return view('admin.rutas', ['resultados'=>$result]);
+        }else{
+            $ruta = $this->repoRutas->detalle($id);
+            return view('admin.rutas', ['resultados'=>$result, 'ruta'=>$ruta]);
+        }
+    }
+    public function listaUsuarios($id = null){
+        $result = User::all();
+        if(!isset($id)){
+            return view('admin.user', ['resultados'=>$result]);
+        }else{
+            $user = User::where('id',$id)->get();
+            return view('admin.user', ['resultados'=>$result, 'user'=>$user]);
+        }
+    }
 }

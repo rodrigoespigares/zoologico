@@ -30,12 +30,12 @@ header{
     width: 100%;
 }
 .header__interaccion a{
-    font-size: 3rem !important;
+    font-size: 2rem !important;
 }
 /*Colocacion de botones*/
 .header__userInteraction{
     /*Tamaño icono*/
-    font-size: 2rem;
+    font-size: 1.2rem;
     /*Necesario para row*/
     display: flex;
     /*Alienado*/

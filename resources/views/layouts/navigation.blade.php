@@ -13,9 +13,11 @@
             <li class="header__nav__container"><a href="#" class="header__nav__container__link">Rutas</a></li>
             <li class="header__nav__container"><a href="#" class="header__nav__container__link">Entradas</a></li>
             <li class="header__nav__container"><a href="/animales" class="header__nav__container__link">Animales</a></li>
-            @if (auth()->user()->obtenerRol()!='cliente')
-                <li class="header__nav__container"><a href="/administrador" class="header__nav__container__link">Panel administrador</a></li>
-            @endif
+            @auth
+                @if (auth()->user()->obtenerRol()!='cliente')
+                    <li class="header__nav__container"><a href="/administrador" class="header__nav__container__link">Panel administrador</a></li>
+                @endif
+            @endauth
         </ul>
     </nav>
     <div class="header__userInteraction">

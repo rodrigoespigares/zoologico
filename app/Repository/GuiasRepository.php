@@ -10,6 +10,14 @@ use App\Models\Guia;
         {
             $this->model = $model;   
         }
+        public function getActivo() {
+            return Guia::join('users', 'guia.guia_id', '=', 'users.id')
+                        ->where('guia.activo', true)
+                        ->where('guia.n_clientes', '>', 'guia.ocupadas')
+                        ->select('guia.*', 'users.*') // Selecciona todas las columnas de ambas tablas
+                        ->get();
+        }
+
         public function insertar($pref) {
             Guia::create([
                 'guia_id'=>$pref['guia_id'],

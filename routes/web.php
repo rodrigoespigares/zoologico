@@ -4,6 +4,7 @@ use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RutasController;
+use App\Http\Controllers\VisitasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,20 +50,30 @@ Route::controller(RutasController::class)->group(function () {
 });
 
 Route::controller(AdministradorController::class)->group(function () {
-    Route::get('/administrador','index');
+    Route::get('/administrador','index')->middleware('checkrole:guia,admin,cuidador');
     
-    Route::get('/guia/preferencias','cargaPreferencias');
-    Route::post('/preferencias/crear','crearPreferencias');
-    Route::post('/preferencias/guardar','modificarPreferencias');
+    /* PREFERENCIAS DE LOS GUIAS */
+    Route::get('/guia/preferencias','cargaPreferencias')->middleware('checkrole:guia,admin');
+    Route::post('/preferencias/crear','crearPreferencias')->middleware('checkrole:guia,admin');
+    Route::post('/preferencias/guardar','modificarPreferencias')->middleware('checkrole:guia,admin');
 
     
+    /* LISTADO ANIMALES DE CUIDADORES */
+    Route::get('/verlistadoanimales', 'listaAnimales')->middleware('checkrole:guia,admin');
+    Route::get('/editarlistadoanimales/{id}', 'listaAnimales')->middleware('checkrole:guia,admin');
 
-    Route::get('/verlistadoanimales', 'listaAnimales');
-    Route::get('/editarlistadoanimales/{id}', 'listaAnimales');
-    Route::get('/verlistadorutas', 'listaRutas');
-    Route::get('/editarlistadorutas/{id}', 'listaRutas');
-    Route::get('/verlistadousers', 'listaUsuarios');
-    Route::get('/editarlistadouser/{id}', 'listaUsuarios');
+    /* LISTADO DE RUTAS PARA LOS GUIAS */
+    Route::get('/verlistadorutas', 'listaRutas')->middleware('checkrole:guia,admin');
+    Route::get('/editarlistadorutas/{id}', 'listaRutas')->middleware('checkrole:guia,admin');
+
+    /* LISTADO DE USERS PARA LOS USUARIOS */
+    Route::get('/verlistadousers', 'listaUsuarios')->middleware('checkrole:admin');
+    Route::get('/editarlistadouser/{id}', 'listaUsuarios')->middleware('checkrole:admin');
+});
+
+
+Route::controller(VisitasController::class)->group(function () {
+    Route::get('/entradas','index');
 });
 
 require __DIR__.'/auth.php';

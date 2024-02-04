@@ -1,0 +1,7 @@
+Tengo que quitar de la tabla de guias el OCUPADAS, cada guia se configura para tener x plazas por dia
+
+
+En el preferencias el guia tiene que elegir un dia para ver cuantos cupos le quedan
+
+En entradas hacer el formulario en dos partes, una primera donde se elige el numero de entradas y la fecha y en la segunda parte salgan las rutas disponibles y los guias
+

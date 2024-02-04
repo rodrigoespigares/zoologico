@@ -11,7 +11,7 @@
         </label>
         <ul class="menu">
             <li class="header__nav__container"><a href="/rutas" class="header__nav__container__link">Rutas</a></li>
-            <li class="header__nav__container"><a href="#" class="header__nav__container__link">Entradas</a></li>
+            <li class="header__nav__container"><a href="/entradas" class="header__nav__container__link">Entradas</a></li>
             <li class="header__nav__container"><a href="/animales" class="header__nav__container__link">Animales</a></li>
             @auth
                 @if (auth()->user()->obtenerRol()!='cliente')

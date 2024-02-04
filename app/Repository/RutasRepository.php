@@ -13,6 +13,9 @@ use App\Models\Ruta;
         public function getAll(){
             return Ruta::all();
         }
+        public function getVisitables(){
+            return Ruta::where('visitable', true)->pluck('id');
+        }
          public function insertar($ruta) {
             Ruta::create([
                 'nombre' => $ruta['nombre'],

@@ -12,7 +12,7 @@ class Guia extends Model
     protected $fillable = [
         "guia_id",
         "n_clientes",
-        "disponibles",
+        "ocupadas",
         "visitable",
     ];
     protected $primaryKey = "id";

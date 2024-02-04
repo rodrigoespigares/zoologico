@@ -24,8 +24,9 @@ class AnimalController extends Controller
      */
     public function index()
     {
+        $rutas = $this->repoRutas->getVisitables();
         $result = $this->repository->getAll();
-        return view('animales.lista', ['resultados' => $result]);
+        return view('animales.lista', ['resultados' => $result,'rutas' => $rutas]);
     }
 
     /**

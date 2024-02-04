@@ -8,8 +8,9 @@
             <th>Descripcion</th>
             <th>Foto</th>
         </tr>
+        
         @foreach ($resultados as $resultado)
-            @if ($resultado->visitable == 1)
+            @if ($resultado->visitable == 1 && in_array($resultado->ruta_id,$rutas->toArray()))
                 <tr>
                     <td>{{$resultado->nombre}}</td>
                     <td>{{$resultado->n_cientifico}}</td>

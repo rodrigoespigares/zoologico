@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Repository\AnimalesRepository;
 use App\Repository\RutasRepository;
-use App\Repository\GuiaRepository;
+use App\Repository\GuiasRepository;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,10 +13,12 @@ class AdministradorController extends Controller
     protected $user;
     protected $rAnimales;
     protected $repoRutas;
-    public function __construct(AnimalesRepository $rAnimales, User $user, RutasRepository $repoRutas)
+    protected $rGuias;
+    public function __construct(AnimalesRepository $rAnimales, User $user, RutasRepository $repoRutas, GuiasRepository $rGuias)
     {
         $this->rAnimales = $rAnimales;
         $this->user = $user;
+        $this->rGuias = $rGuias;
         $this->repoRutas = $repoRutas;
     }
     /**
@@ -59,7 +61,44 @@ class AdministradorController extends Controller
             return view('admin.user', ['resultados'=>$result, 'user'=>$user]);
         }
     }
-    public function preferencias(){
+    public function cargaPreferencias(){
+        $result = $this->rGuias->detalle(Auth::user()->id);
+        if(count($result)>0){
+            return view('admin.preferencias', ['result'=>$result[0]]);
+        }else{
+            return view('admin.preferencias');
+        }
+    }
+    public function crearPreferencias(Request $request) {
         
+        $request['n_clientes']= (integer) $request['n_clientes'];
+        $validate = $request->validate([
+            'n_clientes' => "required|integer"
+        ]);
+        $validate['guia_id']=Auth::user()->id;
+        $validate['ocupadas']=0;
+        $validate['activo']=true;
+        $this->rGuias->insertar($validate);
+
+        return redirect('/guia/preferencias');
+    }
+
+    public function modificarPreferencias(Request $request) {
+        $result = $this->rGuias->detalle(Auth::user()->id);
+        $min = $result[0]->ocupadas;
+        
+        $validate = $request->validate([
+            'n_clientes' => ['required', 'numeric', function ($attribute, $value, $fail) use ($min) {
+                if ($value <= $min) {
+                    $fail("$attribute debe ser mayor que $min.");
+                }
+            }],
+        ]);
+
+        $validate['n_clientes']= (integer) $validate['n_clientes'];
+        $validate['guia_id']=Auth::user()->id;
+        $this->rGuias->edit($validate);
+
+        return redirect('/guia/preferencias');
     }
 }

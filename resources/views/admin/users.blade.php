@@ -29,7 +29,7 @@
                 @if(request()->is('verlistadousuarios'))
                     @include('usuarios.create')
                 @else
-                    @include('usuarios.edit', ['usuario' => $usuario[0]])
+                    @include('usuarios.edit', ['user' => $user[0]])
                     <a href="/verlistadousuarios">Cancelar</a>
                 @endif
             </div>

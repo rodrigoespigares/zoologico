@@ -74,8 +74,8 @@ Route::controller(AdministradorController::class)->group(function () {
     Route::get('/editarlistadorutas/{id}', 'listaRutas')->middleware('checkrole:guia,admin');
 
     /* LISTADO DE USERS PARA LOS USUARIOS */
-    Route::get('/verlistadousers', 'listaUsuarios')->middleware('checkrole:admin');
-    Route::get('/editarlistadouser/{id}', 'listaUsuarios')->middleware('checkrole:admin');
+    Route::get('/verlistadousuarios', 'listaUsuarios')->middleware('checkrole:admin');
+    Route::get('/editarlistadousuarios/{id}', 'listaUsuarios')->middleware('checkrole:admin');
 });
 
 

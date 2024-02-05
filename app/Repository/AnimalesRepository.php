@@ -1,4 +1,4 @@
-<?php 
+<?php
 
     namespace App\Repository;
 
@@ -8,7 +8,7 @@ use App\Models\Animal;
         protected Animal $model;
         public function __construct(Animal $model)
         {
-            $this->model = $model;   
+            $this->model = $model;
         }
         public function getAll(){
             return Animal::all();
@@ -23,7 +23,6 @@ use App\Models\Animal;
                 'cuidador_id' => $animal['cuidador_id'],
                 'ruta_id' => $animal['ruta_id'],
             ]);
-            
         }
         public function noVisitable($id) {
             Animal::where('id', $id)->update([

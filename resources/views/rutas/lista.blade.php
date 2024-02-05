@@ -1,7 +1,7 @@
 
 <x-app-layout>
     <x-slot name="slot">
-       
+
     <table class="table">
         <tr>
             <th>Nombre</th>
@@ -16,6 +16,7 @@
             }else{
                 $foto = url('img/subidas/rutas'.$resultado->foto);
             }
+
             @endphp
             @if ($resultado->visitable == 1)
                 <tr>
@@ -33,6 +34,8 @@
                 </tr>
             @endif
         @endforeach
+
+
     </table>
 </x-slot>
 </x-app-layout>

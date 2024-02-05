@@ -55,10 +55,10 @@ class AdministradorController extends Controller
     public function listaUsuarios($id = null){
         $result = User::all();
         if(!isset($id)){
-            return view('admin.user', ['resultados'=>$result]);
+            return view('admin.users', ['resultados'=>$result]);
         }else{
             $user = User::where('id',$id)->get();
-            return view('admin.user', ['resultados'=>$result, 'user'=>$user]);
+            return view('admin.users', ['resultados'=>$result, 'user'=>$user]);
         }
     }
     public function cargaPreferencias(){
@@ -70,7 +70,7 @@ class AdministradorController extends Controller
         }
     }
     public function crearPreferencias(Request $request) {
-        
+
         $request['n_clientes']= (integer) $request['n_clientes'];
         $validate = $request->validate([
             'n_clientes' => "required|integer"
@@ -86,7 +86,7 @@ class AdministradorController extends Controller
     public function modificarPreferencias(Request $request) {
         $result = $this->rGuias->detalle(Auth::user()->id);
         $min = $result[0]->ocupadas;
-        
+
         $validate = $request->validate([
             'n_clientes' => ['required', 'numeric', function ($attribute, $value, $fail) use ($min) {
                 if ($value <= $min) {

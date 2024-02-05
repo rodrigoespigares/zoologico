@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\AnimalesRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests\SubirFotos;
 use App\Repository\RutasRepository;
@@ -9,12 +10,14 @@ use App\Repository\RutasRepository;
 class RutasController extends Controller
 {
     protected $repoRutas;
+    protected $repoAnimales;
     /**
      * @param $repoRutas
      */
-    public function __construct( RutasRepository $repoRutas)
+    public function __construct( RutasRepository $repoRutas,AnimalesRepository $repoAnimales)
     {
         $this->repoRutas = $repoRutas;
+        $this->repoAnimales = $repoAnimales;
     }
 
     public function index()
@@ -45,20 +48,28 @@ class RutasController extends Controller
             'nombre' => "required | min:3 | max:25",
             'descripcion' => "required"
         ]);
-        
+
         $this->repoRutas->insertar($validate);
         //return redirect()->action([AnimalController::class, 'index']);
         return redirect('/verlistadorutas')->with('success','Se ha añadido una nueva ruta');
+    }
+    public function show(string $id)
+    {
+        $animales=$this->repoAnimales->getAll();
+        $result2=[];
+        foreach ($animales as $animale){
+            if ($animale->ruta_id){
+                array_push($result2,$animale);
+            }
+        }
+        $result = $this->repoRutas->detalle($id);
+        return view('rutas.detalle',['rutas'=>$result, 'animales'=>$result2]);
     }
     public function edit(string $id,Request $request)
     {
         ##VALIDAR
         $this->repoRutas->edit($id,$request);
         return redirect('/verlistadorutas')->with('success','Se ha añadido un nuevo contacto');
-    }
-    public function update(Request $request, string $id)
-    {
-        //
     }
     public function destroy(string $id)
     {

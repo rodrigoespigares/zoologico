@@ -18,7 +18,7 @@
                                 <td>
                                     <a href="/rutas/ver/{{$resultado->id}}">Ver</a>
                                     <a href="/editarlistadorutas/{{$resultado->id}}">Editar</a>
-                                    <a href="/rutas/destroy/{{$resultado->id}}">No visitable</a>
+                                    <a href="/rutas/destroy/{{$resultado->id}}">Dejar de visitar</a>
                                 </td>
                             </tr>
 

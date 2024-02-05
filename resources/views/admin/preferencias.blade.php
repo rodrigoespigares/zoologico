@@ -26,9 +26,6 @@
                         <label for="n_clientes">Número de clientes</label>
                         <input type="text" class="form-control text-primary" name="n_clientes" id="n_clientes" value="{{isset($result->n_clientes)?$result->n_clientes:""}}">
                     </div>
-                    @if (isset($result))
-                        <p>Quedan aun: {{$result->n_clientes-$result->ocupadas}} personas para completar el grupo</p>
-                    @endif
         
                 <button type="submit" class="btn btn-primary-outline">{{isset($result)?"Editar":"Guardar"}}</button>
                 </form>

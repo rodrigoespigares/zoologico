@@ -5,6 +5,7 @@ use App\Repository\AnimalesRepository;
 use App\Repository\RutasRepository;
 use App\Repository\GuiasRepository;
 use App\Models\User;
+use App\Repository\VisitaRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,12 +13,14 @@ class AdministradorController extends Controller
 {
     protected $user;
     protected $rAnimales;
+    protected $rVisitas;
     protected $repoRutas;
     protected $rGuias;
-    public function __construct(AnimalesRepository $rAnimales, User $user, RutasRepository $repoRutas, GuiasRepository $rGuias)
+    public function __construct(AnimalesRepository $rAnimales, User $user, RutasRepository $repoRutas, GuiasRepository $rGuias, VisitaRepository $rVisitas)
     {
         $this->rAnimales = $rAnimales;
         $this->user = $user;
+        $this->rVisitas = $rVisitas;
         $this->rGuias = $rGuias;
         $this->repoRutas = $repoRutas;
     }
@@ -63,6 +66,7 @@ class AdministradorController extends Controller
     }
     public function cargaPreferencias(){
         $result = $this->rGuias->detalle(Auth::user()->id);
+
         if(count($result)>0){
             return view('admin.preferencias', ['result'=>$result[0]]);
         }else{
@@ -70,10 +74,8 @@ class AdministradorController extends Controller
         }
     }
     public function crearPreferencias(Request $request) {
-        
-        $request['n_clientes']= (integer) $request['n_clientes'];
         $validate = $request->validate([
-            'n_clientes' => "required|integer"
+            'n_clientes' => "required"
         ]);
         $validate['guia_id']=Auth::user()->id;
         $validate['activo']=true;

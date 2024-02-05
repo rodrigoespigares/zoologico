@@ -83,6 +83,8 @@ Route::controller(VisitasController::class)->group(function () {
     Route::get('/entradas','index');
     Route::post('/confirma','comprasUno');
     Route::post('/comprar','comprasDos');
+    Route::get('/mis_visitas','misVisitas');
+    Route::get('/visita/cancelar/{id}','cancelar');
 });
 
 require __DIR__.'/auth.php';

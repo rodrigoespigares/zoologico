@@ -52,4 +52,12 @@ class VisitasController extends Controller
         $this->repoVisitas->insertar($validate);
         return redirect('/');
     }
+    public function misVisitas(){
+        $result = $this->repoVisitas->getVisitas(Auth::user()->id);
+        return view('cliente.misVisitas', ['rutas'=>$result]);
+    }
+    public function cancelar($id) {
+        $this->repoVisitas->cancelar($id);
+        return redirect('/mis_visitas');
+    }
 }

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
                             'guia.n_clientes'
                         )
                         ->whereDate('visitas.fecha_visita', $fecha)
+                        ->where('visitas.cancelado', false)
                         ->groupBy('users.id', 'guia.n_clientes')
                         ->havingRaw('sum(visitas.n_entradas) < guia.n_clientes')
                         ->get();
@@ -36,6 +37,14 @@ use Illuminate\Support\Facades\DB;
                 'n_entradas' => $visita['n_entradas'],
                 'ruta_id' => $visita['ruta'],
             ]);
+            
+        }
+        public function getVisitas($id) {
+            return Visita::select('*')->where('user_id', '=', $id)->get();
+            
+        }
+        public function cancelar($id) {
+            Visita::where('id',$id)->update(['cancelado'=>true]);
             
         }
     }

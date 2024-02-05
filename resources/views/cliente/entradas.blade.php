@@ -13,7 +13,7 @@
                     </div><br/>
                     
                 @endif
-                <form enctype="multipart/form-data" action="{{url('/comprar')}}" method="post">
+                <form enctype="multipart/form-data" action="{{url('/confirma')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="n_entradas">Número de entradas</label>
@@ -23,26 +23,7 @@
                         <label for="fecha_visita">Fecha de la visita</label>
                         <input oninput="{{date("Y-m-d", strtotime("+3 day"))}}" min="{{date("Y-m-d", strtotime("+1 day"))}}" max="{{date("Y-m-d", strtotime("+14 days"))}}" type="date" class="form-control text-primary" name="fecha_visita" id="fecha_visita">
                     </div>
-                    <div class="form-group">
-                        <label for="ruta">Rutas disponibles</label>
-                        <select name="ruta" id="ruta">
-                            @foreach ($rutas as $ruta)
-                                <option value="{{$ruta->id}}">{{$ruta->nombre}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        
-                        <label for="guia">Guias disponibles</label>
-                        <select name="guia" id="visitable">
-                            @foreach ($guias as $guia)
-                            
-                                <option value="{{$guia->id}}">{{$guia->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    
-                <button type="submit" class="btn btn-primary-outline">Comprar</button>
+                <button type="submit" class="btn btn-primary-outline">Siguiente</button>
                 </form>
         
             </div>

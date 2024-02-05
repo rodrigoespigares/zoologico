@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('guia_id');
-            $table->dateTime("fecha_visita");
+            $table->date("fecha_visita");
             $table->boolean("cancelado")->default(false);
             $table->integer("n_entradas");
             $table->unsignedBigInteger('ruta_id')->nullable(false);

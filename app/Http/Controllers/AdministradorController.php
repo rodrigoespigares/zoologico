@@ -76,7 +76,6 @@ class AdministradorController extends Controller
             'n_clientes' => "required|integer"
         ]);
         $validate['guia_id']=Auth::user()->id;
-        $validate['ocupadas']=0;
         $validate['activo']=true;
         $this->rGuias->insertar($validate);
 

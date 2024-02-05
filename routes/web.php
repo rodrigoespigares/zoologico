@@ -81,6 +81,8 @@ Route::controller(AdministradorController::class)->group(function () {
 
 Route::controller(VisitasController::class)->group(function () {
     Route::get('/entradas','index');
+    Route::post('/confirma','comprasUno');
+    Route::post('/comprar','comprasDos');
 });
 
 require __DIR__.'/auth.php';

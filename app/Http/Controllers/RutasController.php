@@ -53,6 +53,7 @@ class RutasController extends Controller
         //return redirect()->action([AnimalController::class, 'index']);
         return redirect('/verlistadorutas')->with('success','Se ha añadido una nueva ruta');
     }
+
     public function show(string $id)
     {
         $animales=$this->repoAnimales->getAll();

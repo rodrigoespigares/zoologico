@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 class UsuarioController extends Controller
 {
@@ -26,6 +33,28 @@ class UsuarioController extends Controller
         $result = User::all();
         return view('usuario.create', ['usuarios'=>$result]);
     }
+    public function almacenar(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'subname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'rol'=>['required']
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'subname' => $request->subname,
+            'email' => $request->email,
+            'rol'=> $request->rol,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+
+
+        return redirect("/verlistadousuarios");
+    }
 
     public function edit(string $id,Request $request)
     {
@@ -41,7 +70,7 @@ class UsuarioController extends Controller
     public function destroy(string $id)
     {
         User::where('id', $id)->update([
-            'rol'=>'user',
+            'rol'=>'cliente',
         ]);;
         return redirect('/verlistadousuarios')->with('success','Se ha añadido un nuevo contacto');
     }

@@ -46,7 +46,7 @@ class AnimalController extends Controller
         $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // ajusta las reglas según tus necesidades
         ]);
-    
+
         if ($request->hasFile('foto')) {
             $imagen = $request->file('foto');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
@@ -55,7 +55,7 @@ class AnimalController extends Controller
             } catch (\Exception $e) {
                 return back()->withError('Error al almacenar la imagen: ' . $e->getMessage());
             }
-            
+
             // Puedes almacenar el nombre de la imagen en tu base de datos si es necesario
         }
         $validate = $request->validate([
@@ -105,6 +105,6 @@ class AnimalController extends Controller
     public function destroy(string $id)
     {
         $this->repository->noVisitable($id);
-        return redirect('/animales')->with('success','Se ha añadido un nuevo contacto');
+        return redirect('/verlistadoanimales')->with('success','Se ha añadido un nuevo contacto');
     }
 }

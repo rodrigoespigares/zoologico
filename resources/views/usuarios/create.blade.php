@@ -11,7 +11,7 @@
             </div><br/>
 
         @endif
-        <form enctype="multipart/form-data" action="{{url('/usuarios/alamacenar')}}" method="post">
+        <form enctype="multipart/form-data" action="{{url('/usuarios/almacenar')}}" method="post">
             @csrf
             <div class="form-group">
                 <label for="name">Nombre</label>
@@ -26,8 +26,16 @@
                 <input type="email" class="form-control text-primary" name="email" id="email">
             </div>
             <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control text-primary" name="password" id="password">
+            </div>
+            <div class="form-group">
+                <label for="password_confirmator">Confirmar Password</label>
+                <input type="password" class="form-control text-primary" name="password_confirmator" id="password_confirmator">
+            </div>
+            <div class="form-group">
                 <label for="rol">Rol</label>
-                <input type="rol" class="form-control text-primary" name="rol" id="rol">
+                <input type="text" class="form-control text-primary" name="rol" id="rol">
             </div>
 
 

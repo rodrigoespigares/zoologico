@@ -52,6 +52,7 @@ Route::controller(RutasController::class)->group(function () {
 Route::controller(UsuarioController::class)->group(function () {
     Route::get('/usuarios','index');
     Route::get('/usuarios/ver/{id}','show');
+    Route::post('/usuarios/almacenar','almacenar');
     Route::get('/usuarios/destroy/{id}','destroy')->middleware('checkrole:admin');
     Route::post('/usuarios/editar/{id}','edit');
 });
@@ -66,8 +67,8 @@ Route::controller(AdministradorController::class)->group(function () {
 
 
     /* LISTADO ANIMALES DE CUIDADORES */
-    Route::get('/verlistadoanimales', 'listaAnimales')->middleware('checkrole:guia,admin');
-    Route::get('/editarlistadoanimales/{id}', 'listaAnimales')->middleware('checkrole:guia,admin');
+    Route::get('/verlistadoanimales', 'listaAnimales')->middleware('checkrole:cuidador,admin');
+    Route::get('/editarlistadoanimales/{id}', 'listaAnimales')->middleware('checkrole:cuidador,admin');
 
     /* LISTADO DE RUTAS PARA LOS GUIAS */
     Route::get('/verlistadorutas', 'listaRutas')->middleware('checkrole:guia,admin');
@@ -81,6 +82,10 @@ Route::controller(AdministradorController::class)->group(function () {
 
 Route::controller(VisitasController::class)->group(function () {
     Route::get('/entradas','index');
+    Route::post('/confirma','comprasUno');
+    Route::post('/comprar','comprasDos');
+    Route::get('/mis_visitas','misVisitas');
+    Route::get('/visita/cancelar/{id}','cancelar');
 });
 
 require __DIR__.'/auth.php';

@@ -14,6 +14,7 @@
             <li class="header__nav__container"><a href="/entradas" class="header__nav__container__link">Entradas</a></li>
             <li class="header__nav__container"><a href="/animales" class="header__nav__container__link">Animales</a></li>
             @auth
+                <li class="header__nav__container"><a href="/mis_visitas" class="header__nav__container__link">Mis visitas</a></li>
                 @if (auth()->user()->obtenerRol()!='cliente')
                     <li class="header__nav__container"><a href="/administrador" class="header__nav__container__link">Panel administrador</a></li>
                 @endif

@@ -18,7 +18,7 @@
                             <td>
                                 <a href="/usuarios/ver/{{$resultado->id}}">Ver</a>
                                 <a href="/editarlistadousuarios/{{$resultado->id}}">Editar</a>
-                                <a href="/usuarios/destroy/{{$resultado->id}}">Eliminar (cambiar rol a user)</a>
+                                <a href="/usuarios/destroy/{{$resultado->id}}">Cambiar rol a cliente</a>
                             </td>
                         </tr>
 

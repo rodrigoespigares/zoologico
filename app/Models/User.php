@@ -70,4 +70,8 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function guia() {
+        return $this->hasOne(Guia::class, 'id', 'guia_id');
+    }
 }

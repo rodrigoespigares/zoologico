@@ -20,7 +20,7 @@
                         <a href="/usuarios/ver/{{$resultado->id}}">Ver</a>
                         @auth
                             @if (auth()->user()->obtenerRol()=='admin' || auth()->user()->obtenerRol()=='admin')
-                                <a href="/usuarios/destroy/{{$resultado->id}}">Eliminar (Cambiar el rol a user)</a>
+                                <a href="/usuarios/destroy/{{$resultado->id}}">Cambiar rol a Usuario</a>
                             @endif
                         @endauth
                     </td>

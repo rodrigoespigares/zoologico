@@ -12,9 +12,11 @@ class Guia extends Model
     protected $fillable = [
         "guia_id",
         "n_clientes",
-        "ocupadas",
         "visitable",
     ];
     protected $primaryKey = "id";
     protected $guarded = ['id'];
+    public function user() {
+        return $this->belongsTo(User::class, 'guia_id', 'id');
+    }
 }

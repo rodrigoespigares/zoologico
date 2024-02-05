@@ -8,21 +8,22 @@
                         <th>Nombre Cientifico</th>
                         <th>Descripcion</th>
                         <th>Foto</th>
+                        <th>Visitable</th>
                     </tr>
                     @foreach ($resultados as $resultado)
-                        @if ($resultado->visitable == 1)
                             <tr>
                                 <td>{{$resultado->nombre}}</td>
                                 <td>{{$resultado->n_cientifico}}</td>
                                 <td>{{$resultado->descripcion}}</td>
                                 <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
+                                <td>{{$resultado->visitable==1?"visible":"no visible" }}</td>
                                 <td>
                                     <a href="/animales/ver/{{$resultado->id}}">Ver</a>
                                     <a href="/editarlistadoanimales/{{$resultado->id}}">Editar</a>
                                     <a href="/animales/destroy/{{$resultado->id}}">No visitable</a>
                                 </td>
+
                             </tr>
-                        @endif
                     @endforeach
                 </table>
             </div>

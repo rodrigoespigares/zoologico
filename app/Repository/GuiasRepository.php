@@ -3,6 +3,7 @@
     namespace App\Repository;
 
 use App\Models\Guia;
+use App\Models\User;
 
     class GuiasRepository{
         protected Guia $model;
@@ -13,16 +14,13 @@ use App\Models\Guia;
         public function getActivo() {
             return Guia::join('users', 'guia.guia_id', '=', 'users.id')
                         ->where('guia.activo', true)
-                        ->where('guia.n_clientes', '>', 'guia.ocupadas')
                         ->select('guia.*', 'users.*') // Selecciona todas las columnas de ambas tablas
                         ->get();
         }
-
         public function insertar($pref) {
             Guia::create([
                 'guia_id'=>$pref['guia_id'],
                 'n_clientes' => $pref['n_clientes'],
-                'ocupadas' => $pref['ocupadas'],
                 'activo' => $pref['activo'],
             ]);
             
@@ -34,6 +32,9 @@ use App\Models\Guia;
             Guia::where('guia_id', $data['guia_id'])->update([
                 'n_clientes'=>$data['n_clientes'],
             ]);
+        }
+        public function getDatosID($id) {
+            return User::find($id);
         }
     }
 

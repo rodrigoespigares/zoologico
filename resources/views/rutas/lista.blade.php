@@ -25,11 +25,7 @@
                     <td><img src="{{$foto}}" alt=""></td>
                     <td>
                         <a href="/rutas/ver/{{$resultado->id}}">Ver</a>
-                        @auth
-                            @if (auth()->user()->obtenerRol()=='admin' || auth()->user()->obtenerRol()=='guia')
-                                <a href="/rutas/destroy/{{$resultado->id}}">No visitable</a>
-                            @endif
-                        @endauth
+
                     </td>
                 </tr>
             @endif

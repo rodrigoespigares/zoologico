@@ -1,33 +1,23 @@
 <x-app-layout>
     <x-slot name="slot">
-        
-    <table class="table">
-        <tr>
-            <th>Nombre</th>
-            <th>Nombre Cientifico</th>
-            <th>Descripcion</th>
-            <th>Foto</th>
-        </tr>
-        
+
+    <div class="container__all_cards">
         @foreach ($resultados as $resultado)
             @if ($resultado->visitable == 1 && in_array($resultado->ruta_id,$rutas->toArray()))
-                <tr>
-                    <td>{{$resultado->nombre}}</td>
-                    <td>{{$resultado->n_cientifico}}</td>
-                    <td>{{$resultado->descripcion}}</td>
-                    <td><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></td>
-                    <td>
-                        <a href="/animales/ver/{{$resultado->id}}">Ver</a>
-                        @auth
-                            @if (auth()->user()->obtenerRol()=='cuidador')
-                                <a href="/animales/edit/{{$resultado->id}}">Editar</a>
-                                <a href="/animales/destroy/{{$resultado->id}}">No visitable</a>
-                            @endif
-                        @endauth
-                    </td>
-                </tr>
+                <div class="flip-container">
+                    <div class="card">
+                        <div class="frente">
+                            <div class="hola"><img src="{{url('img/subidas/'.$resultado->foto)}}" alt=""></div>
+                        </div>
+                        <div class="dorso">
+                            <h3>{{$resultado->nombre}}</h3>
+                            <h4>{{$resultado->n_cientifico}}</h4>
+                            <p>{{$resultado->descripcion}}</p>
+                        </div>
+                    </div>
+                </div>
             @endif
         @endforeach
-    </table>
+    </div>
 </x-slot>
 </x-app-layout>

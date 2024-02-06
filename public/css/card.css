@@ -1,0 +1,96 @@
+.container__all_cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+.container__all_cards img{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+.flip-container {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    margin:0 auto;
+}
+
+.card {
+    position: relative;
+    display:flex;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.75, 0, 0.85, 1);
+}
+
+.card img, card p {
+    display:block;
+}
+.card h3, .card h4{
+    font-size: medium;
+
+    height: 10%;
+}
+.card p {
+    height: 50%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color:#FFF;
+}
+
+/* GIRA HORIZONTAL */
+.flip-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+
+/* GIRA VERTICAL
+.flip-container:hover .card {
+  transform: rotateX(180deg);
+}
+*/
+
+
+.frente, .dorso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.frente {
+    border-radius: 20px;
+
+    color: #fff;
+    display: flex;
+}
+
+.dorso {
+    border-radius: 20px;
+    background-color: #6ed3ab;
+    color: #faebd7;
+    /*transform: rotateX(180deg);*/
+    transform: rotateY(180deg);
+    text-align:center;
+}
+
+
+
+.dorso p {
+    font-size: small;
+    display:block;
+    height: 70%;
+    width:100%;
+    background:transparent;
+    padding:1em;
+    text-transform:uppercase;
+}

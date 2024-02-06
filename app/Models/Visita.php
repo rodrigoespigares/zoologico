@@ -15,6 +15,8 @@ class Visita extends Model
         "user_id",
         "guia_id",
         "fecha_visita",
+        "hora",
+        "precio",
         "cancelado",
         "n_entradas",
         "ruta_id",

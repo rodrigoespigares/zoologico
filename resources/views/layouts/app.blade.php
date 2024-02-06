@@ -10,16 +10,17 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-            @include('layouts.navigation')
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+        @include('layouts.navigation')
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
     </body>
 </html>

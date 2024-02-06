@@ -23,7 +23,6 @@ class VisitasController extends Controller
     
     public function index()
     {
-        
         return view('cliente.entradas');
     }
     public function comprasUno(Request $request){
@@ -39,7 +38,11 @@ class VisitasController extends Controller
             array_push($guias, $result->toArray());
             
         }
-        return view('cliente.entradas_dos', ['guias' => $guias, 'rutas' => $rutas, 'validate' => $validate]);
+        if(count($guias)<=0){
+            return back()->withErrors(['Parece que no quedan guías para esa fecha']);
+        }else{
+            return view('cliente.entradas_dos', ['guias' => $guias, 'rutas' => $rutas, 'validate' => $validate]);
+        }
     }
     public function comprasDos(Request $request){
         $validate = $request->validate([

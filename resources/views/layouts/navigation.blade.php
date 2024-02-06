@@ -1,7 +1,7 @@
 <header>
     <div class="header__logo">
         <a href="/" class="header__logo">
-            <h1>Pruebas</h1>
+            <h1>Central Park Zoo</h1>
         </a>
     </div>
     <nav class="top-nav header__nav">

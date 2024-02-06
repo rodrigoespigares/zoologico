@@ -1,0 +1,6 @@
+.hero__carrusel{
+    max-height: 70vh;
+}
+#hero .hero__carrusel__img{
+    height: 100%;
+}

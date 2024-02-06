@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Montserrat:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;600;700&family=Protest+Riot&display=swap');
 *{
     /*Elimino la decoracion de las listas*/
     list-style: none;
@@ -10,7 +10,7 @@
     /*Quito decoracion del texto*/
     text-decoration: none;
     /*Fuente por defecto*/
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     /*Ancho por defecto*/
     font-weight: 400;
 }
@@ -40,17 +40,17 @@ body{
     row-gap: 3rem;
 }
 h1{
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Protest Riot', sans-serif;
     font-size: 5rem;
 }
 h2{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 600;
     font-size: 3rem;
     color: var(--primary);
 }
 p{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 200;
     font-size: 1.5rem;
     color: var(--primary);

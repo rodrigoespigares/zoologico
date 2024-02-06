@@ -46,7 +46,8 @@ class VisitasController extends Controller
             'n_entradas' => "required",
             'fecha_visita' => 'required',
             'ruta' => 'required',
-            'guia' => 'required'
+            'guia' => 'required',
+            'hora' => 'required',
         ]);
         $validate['user_id']=Auth::user()->id;
         $this->repoVisitas->insertar($validate);

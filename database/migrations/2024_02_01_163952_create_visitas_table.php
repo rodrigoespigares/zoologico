@@ -16,8 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('guia_id');
             $table->date("fecha_visita");
+            $table->time("hora");
             $table->boolean("cancelado")->default(false);
             $table->integer("n_entradas");
+            $table->float("precio");
             $table->unsignedBigInteger('ruta_id')->nullable(false);
             $table->timestamps();
             $table->foreign('ruta_id')->references('id')->on('ruta');

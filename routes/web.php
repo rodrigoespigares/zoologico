@@ -83,7 +83,7 @@ Route::controller(AdministradorController::class)->group(function () {
 Route::controller(VisitasController::class)->group(function () {
     Route::get('/entradas','index');
     Route::post('/confirma','comprasUno');
-    Route::post('/comprar','comprasDos');
+    Route::post('/entradas/comprar','comprasDos');
     Route::get('/mis_visitas','misVisitas');
     Route::get('/visita/cancelar/{id}','cancelar');
 });

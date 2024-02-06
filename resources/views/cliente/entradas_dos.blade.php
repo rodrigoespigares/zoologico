@@ -13,7 +13,7 @@
                     </div><br/>
                     
                 @endif
-                <form enctype="multipart/form-data" action="{{url('/comprar')}}" method="post">
+                <form enctype="multipart/form-data" action="{{url('/entradas/comprar')}}" method="POST">
                     @csrf
                     <input type="hidden" name="n_entradas" value="{{$validate['n_entradas']}}">
                     <input type="hidden" name="fecha_visita" value="{{$validate['fecha_visita']}}">
@@ -36,7 +36,15 @@
                             @endforeach
                         </select>
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="hora">Hora de la visita</label>
+                        <select name="hora" id="">
+                            <option value="10">10:00</option>
+                            <option value="11">11:00</option>
+                            <option value="12">12:00</option>
+                            <option value="13">13:00</option>
+                        </select>
+                    </div>
                 <button type="submit" class="btn btn-primary-outline">Siguiente</button>
                 </form>
         

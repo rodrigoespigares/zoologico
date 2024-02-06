@@ -9,7 +9,7 @@
                     if($resultado->foto == "sin_foto.png"){
                         $foto = url('img/'.$resultado->foto);
                     }else{
-                        $foto = url('img/subidas/rutas'.$resultado->foto);
+                        $foto = url('img/subidas/rutas'."/$resultado->foto");
                     }
 
                 @endphp

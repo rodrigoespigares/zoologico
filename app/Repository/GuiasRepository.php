@@ -17,6 +17,13 @@ use App\Models\User;
                         ->select('guia.*', 'users.*') // Selecciona todas las columnas de ambas tablas
                         ->get();
         }
+        public function create($id) {
+            Guia::create([
+                'guia_id'=>$id,
+                'n_clientes' => 10,
+                'activo' => true,
+            ]);
+        }
         public function insertar($pref) {
             Guia::create([
                 'guia_id'=>$pref['guia_id'],

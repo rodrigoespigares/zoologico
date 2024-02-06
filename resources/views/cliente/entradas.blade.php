@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="slot">
         <div class="col-sm-8 offset-sm-2">
-            <h2 class="display-3">Añadir un animal</h2>
+            <h2 class="display-3">Registra tus entradas</h2>
             <div>
                 @if ($errors->any())
                     <div class="alert alert-danger">

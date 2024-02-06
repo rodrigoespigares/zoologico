@@ -33,6 +33,11 @@ class RutasController extends Controller
     public function store(Request $request)
     {
 
+       
+        $validate = $request->validate([
+            'nombre' => "required | min:3 | max:25",
+            'descripcion' => "required"
+        ]);
         if ($request->hasFile('foto')) {
             $imagen = $request->file('foto');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
@@ -44,11 +49,8 @@ class RutasController extends Controller
             $validate['foto']=$nombreImagen;
             // Puedes almacenar el nombre de la imagen en tu base de datos si es necesario
         }
-        $validate = $request->validate([
-            'nombre' => "required | min:3 | max:25",
-            'descripcion' => "required"
-        ]);
 
+        dd($validate);
         $this->repoRutas->insertar($validate);
         //return redirect()->action([AnimalController::class, 'index']);
         return redirect('/verlistadorutas')->with('success','Se ha añadido una nueva ruta');

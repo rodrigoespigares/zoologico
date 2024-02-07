@@ -41,6 +41,10 @@ body{
     color: black !important;
 }
 .form_login{
+    border: 1px solid #eee;
+    box-shadow: 0 0 40px 10px #ddd;
+    padding: 3rem;
+    border-radius:20px;
     width: 25rem;
 }
 .contenedor_login{

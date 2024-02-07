@@ -35,7 +35,12 @@
             </div>
             <div class="form-group">
                 <label for="rol">Rol</label>
-                <input type="text" class="form-control text-primary" name="rol" id="rol">
+                <select name="rol" id="rol">
+                    <option value="guia">Guia</option>
+                    <option value="cliente">Cliente</option>
+                    <option value="admin">Admin</option>
+                    <option value="cuidador">Cuidador</option>
+                </select>
             </div>
 
 

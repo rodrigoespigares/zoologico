@@ -1,6 +1,5 @@
 <x-app-layout>
     <x-slot name="slot">
-
     <div class="container__all_cards">
         @foreach ($resultados as $resultado)
             @if ($resultado->visitable == 1 && in_array($resultado->ruta_id,$rutas->toArray()))

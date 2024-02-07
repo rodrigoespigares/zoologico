@@ -1,24 +1,38 @@
 <x-app-layout>
     <x-slot name="slot">
-        @foreach ($rutas as $ruta)
-            <p>{{$ruta->nombre}}</p>
-            @if ($ruta->foto == "sin_foto.png")
-            <img src="{{asset('img/')."/$ruta->foto"}}" alt="">
-            @else
-            <img src="{{asset('img/ruta/')."/$ruta->foto"}}" alt="">
-            @endif
-        @endforeach
-        <div>
-            @foreach ($animales as $animal)
-                <p>{{$animal->nombre}}</p>
-                <td>{{$animal->n_cientifico}}</td>
-                <td>{{$animal->descripcion}}</td>
-                @if ($animal->foto == "sin_foto.png")
-                    <img src="{{asset('img/')."/$animal->foto"}}" alt="">
-                @else
-                    <img src="{{asset('img/animales/')."/$animal->foto"}}" alt="">
+        <div class="contenedor__secciones">
+            <div class="seccion">
+                @foreach ($rutas as $ruta)
+                    @if ($ruta->foto == "sin_foto.png")
+                        <div class="seccion_contenedor"><img src="{{asset('img/')."/$animal->foto"}}" alt=""></div>
+                    @else
+                        <div class="seccion_contenedor"><img src="{{asset('img/subidas/rutas/')."/$ruta->foto"}}"></div>
+                    @endif
+
+                    <div class="contenedor__texto">
+                        <h2>{{$ruta->nombre}}</h2>
+                        <p>{{$ruta->descripcion}}</p>
+                    </div>
+                @endforeach
+            </div>
+            <h1 style="font-size: x-large">Animales que podremos ver</h1>
+                @foreach ($animales as $animal)
+                    @if($animal->ruta_id==$rutas[0]->id)
+                <div class="seccion">
+                    @if ($animal->foto == "sin_foto.png")
+                        <div class="seccion_contenedor"><img src="{{asset('img/')."/$animal->foto"}}" alt=""></div>
+                    @else
+                        <div class="seccion_contenedor"><img src="{{asset('img/subidas/animales/')."/$animal->foto"}}"></div>
+                    @endif
+                    <div class="contenedor__texto">
+                        <h2>{{$animal->nombre}}</h2>
+                        <p>{{$animal->descripcion}}</p>
+                    </div>
+                </div>
                 @endif
-            @endforeach
+                @endforeach
+
         </div>
+
     </x-slot>
 </x-app-layout>

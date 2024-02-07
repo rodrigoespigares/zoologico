@@ -9,7 +9,7 @@
                     @endforeach
                 </ul>
             </div><br/>
-            
+
         @endif
         <form enctype="multipart/form-data" action="{{url('/animales/alamacenar')}}" method="post">
             @csrf
@@ -37,14 +37,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="ruta">Ruta</label>
-                <select name="ruta" id="ruta">
+                <label for="ruta_id">Ruta</label>
+                <select name="ruta_id" id="ruta">
                     @foreach ($rutas as $ruta)
                         <option value="{{$ruta->id}}">{{$ruta->nombre}}</option>
                     @endforeach
                 </select>
             </div>
-            
+
         <button type="submit" class="btn btn-primary-outline">Añadir</button>
         </form>
 

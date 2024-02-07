@@ -88,10 +88,11 @@
 #menu-toggle:checked + .menu-button-container{
   background-color: transparent;
 }
-  
+
 #menu-toggle:checked ~ .menu{
   background-color: var(--primaryCeroOcho);
   z-index: 1;
+    max-height: 100vh;
 }
 
 #menu-toggle ~ .menu li {

@@ -62,11 +62,12 @@ class AnimalController extends Controller
             'nombre' => "required | min:3 | max:25",
             'n_cientifico' => "required | min:3 | max:25",
             'descripcion' => "required",
-            'visitable' => "required"
+            'visitable' => "required",
+            'ruta_id'=>"required"
         ]);
         $validate['foto']=$nombreImagen;
         $validate['cuidador_id']=$this->user->obtenerIdUsuarioActual();
-        $validate['ruta_id']=1;
+
         $this->repository->insertar($validate);
         //return redirect()->action([AnimalController::class, 'index']);
         return redirect('/verlistadoanimales')->with('success','Se ha añadido un nuevo animal');
@@ -77,8 +78,18 @@ class AnimalController extends Controller
      */
     public function show(string $id)
     {
+
         $result = $this->repository->detalle($id);
-        return view('animales.detalle',['animales'=>$result]);
+        $result2 = [];
+        /*
+        foreach ($result as $prueba){
+            var_dump($prueba);
+
+            // $result2 = $this->repoRutas->detalle($prueba->rute_id);
+        }
+        */
+        $result2= $this->repoRutas->detalle($result[0]->ruta_id);
+        return view('animales.detalle',['animales'=>$result,'rutas'=>$result2]);
     }
 
     /**

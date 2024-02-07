@@ -55,6 +55,9 @@ class UsuarioController extends Controller
 
         event(new Registered($user));
 
+        if($user->toArray()['rol']=="guia"){
+            $this->guiaRepository->create($user->toArray()['id']);
+        }
 
         return redirect("/verlistadousuarios");
     }

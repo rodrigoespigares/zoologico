@@ -1,0 +1,28 @@
+*{
+    background-color: white !important;
+
+}
+.labels{
+    color: black;
+}
+.login:hover{
+    color: var(--secondary) !important;
+}
+.password:hover{
+    color: var(--secondary) !important;
+}
+.inputs{
+    color: black !important;
+}
+.input_remember{
+    background-color: var(--secondary);
+}
+.form_login{
+    width: 25rem;
+}
+.contenedor_login{
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}

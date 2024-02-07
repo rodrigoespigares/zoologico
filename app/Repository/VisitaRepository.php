@@ -16,17 +16,28 @@ use DateTime;
             $this->model = $model;   
             $this->modelUser = $modelUser;
         }
-        public function getActivo($fecha, $n_entradas)
+        public function getActivo($fecha, $hora, $n_entradas)
         {
+            $string = str_pad($hora, 8, '00', STR_PAD_RIGHT);
+            $horas = substr($string, 0, 2);
+            $minutos = substr($string, 2, 2);
+
+            // Crear un objeto DateTime sin segundos
+            $dateTime = DateTime::createFromFormat('H-i', "$horas-$minutos");
+
+            // Formatear según el formato deseado
+            $horaFormateada = $dateTime->format('H:i');
+            
             return User::select(
                 'users.id',
                 DB::raw('IFNULL(SUM(visitas.n_entradas), 0) as total_entradas'),
                 'guia.n_clientes'
             )
             ->leftJoin('guia', 'users.id', '=', 'guia.guia_id')
-            ->leftJoin('visitas', function ($join) use ($fecha) {
+            ->leftJoin('visitas', function ($join) use ($fecha, $horaFormateada) {
                 $join->on('users.id', '=', 'visitas.guia_id')
                     ->whereDate('visitas.fecha_visita', $fecha)
+                    ->whereTime('visitas.hora', '=', $horaFormateada)
                     ->where('visitas.cancelado', false);
             })
             ->groupBy('users.id', 'guia.n_clientes')
@@ -53,7 +64,7 @@ use DateTime;
                 'guia_id' => $visita['guia'],
                 'fecha_visita' => $visita['fecha_visita'],
                 'hora' => $horaFormateada,
-                'precio' => 15,
+                'precio' => $visita['total'],
                 'n_entradas' => $visita['n_entradas'],
                 'ruta_id' => $visita['ruta'],
             ]);

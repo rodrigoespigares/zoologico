@@ -9,7 +9,7 @@
         @foreach ($rutas as $ruta)
             @if ($ruta->cancelado == false)
                 <tr>
-                    <td>{{$ruta->fecha_visita}}</td>
+                    <td>{{DateTime::createFromFormat('Y/m/d', $ruta->fecha_visita)->format('d/m/Y')}}</td>
                     <td>{{$ruta->n_entradas}}</td>
                     @if (strtotime($ruta->fecha_visita)>time())
                         <td><a href="/visita/cancelar/{{$ruta->id}}">Cancelar</a></td>

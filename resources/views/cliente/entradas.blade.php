@@ -21,7 +21,16 @@
                     </div>
                     <div class="form-group">
                         <label for="fecha_visita">Fecha de la visita</label>
-                        <input oninput="{{date("Y-m-d", strtotime("+3 day"))}}" min="{{date("Y-m-d", strtotime("+1 day"))}}" max="{{date("Y-m-d", strtotime("+14 days"))}}" type="date" class="form-control text-primary" name="fecha_visita" id="fecha_visita">
+                        <input oninput="{{date("Y-m-d", strtotime("+3 day"))}}" min="{{date("Y-m-d", strtotime("+1 day"))}}" max="{{date("Y-m-d", strtotime("+14 days"))}}" type="date" class="form-control" name="fecha_visita" id="fecha_visita">
+                    </div>
+                    <div class="form-group">
+                        <label for="hora">Hora de la visita</label>
+                        <select class="form-control" name="hora" id="">
+                            <option value="10">10:00</option>
+                            <option value="11">11:00</option>
+                            <option value="12">12:00</option>
+                            <option value="13">13:00</option>
+                        </select>
                     </div>
                 <button type="submit" class="btn btn-primary-outline">Siguiente</button>
                 </form>

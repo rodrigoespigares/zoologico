@@ -30,8 +30,9 @@ class VisitasController extends Controller
         $validate = $request->validate([
             'n_entradas' => "required",
             'fecha_visita' => 'required',
+            'hora' => 'required',
         ]);
-        $sol = $this->repoVisitas->getActivo($validate['fecha_visita'],$validate['n_entradas']);
+        $sol = $this->repoVisitas->getActivo($validate['fecha_visita'],$validate['hora'],$validate['n_entradas']);
         $guias = [];
         foreach ($sol->toArray() as $value) {
             $result = $this->repoGuias->getDatosID($value['id']);
@@ -52,9 +53,25 @@ class VisitasController extends Controller
             'guia' => 'required',
             'hora' => 'required',
         ]);
+
+        $total = 15*(integer)$validate['n_entradas'];
+
+        $validate['total']=$total;
+        return view('cliente.entradas_tres', ['validate' => $validate]);
+        
+    }
+    public function comprasTres(Request $request) {
+        $validate = $request->validate([
+            'n_entradas' => "required",
+            'fecha_visita' => 'required',
+            'ruta' => 'required',
+            'guia' => 'required',
+            'hora' => 'required',
+            'total' => 'required',
+        ]);
         $validate['user_id']=Auth::user()->id;
         $this->repoVisitas->insertar($validate);
-        return redirect('/');
+        return redirect('/')->with('success',"Compra realizada con éxito");
     }
     public function misVisitas(){
         $result = $this->repoVisitas->getVisitas(Auth::user()->id);

@@ -37,7 +37,7 @@
         </section>
         @php
             if(session()->has("success")){
-                header("Refresh:1");
+                header("Refresh:2");
             }
         @endphp
     </x-slot>

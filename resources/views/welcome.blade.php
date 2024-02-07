@@ -33,6 +33,45 @@
             </div>
             <section class="d-flex flex-column align-items-center">
                 <h2 class="display-2">Hora de vivir una experiencia en la naturaleza</h2>
+                <p>¿Por qué ruta quieres empezar?</p>
+                <div class="container__all_cards">
+                    @for ($i = 0; $i < 3; $i++)
+                        @php
+                            if($rutas[$i]->foto == "sin_foto.png"){
+                                $foto = url('img/'.$rutas[$i]->foto);
+                            }else{
+                                $foto = url('img/subidas/rutas'."/".$rutas[$i]->foto);
+                            }
+
+                        @endphp
+                        @if ($rutas[$i]->visitable == 1)
+                            @php
+                                if($rutas[$i]->foto == "sin_foto.png"){
+                                    $foto = url('img/'.$rutas[$i]->foto);
+                                }else{
+                                    $foto = url('img/subidas/rutas'."/".$rutas[$i]->foto);
+                                }
+            
+                            @endphp
+                            <a class="flip-container" href="/rutas/ver/{{$rutas[$i]->id}}">
+                                <div class="card">
+                                    <div class="frente">
+                                        <div class="contenedor__img"><img src="{{$foto}}" alt=""></div>
+                                    </div>
+                                    <div class="dorso">
+                                        <h3 style="height: 10%;  margin-top: 30px">{{$rutas[$i]->nombre}}</h3>
+                                        <p>{{$rutas[$i]->descripcion}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        @else
+                            @php
+                                $i--;
+                            @endphp
+                        @endif
+                    @endfor
+                </div>
+                <a href="/rutas" class="btn btn-primary">VER MÁS</a>
             </section>
         </section>
         @php

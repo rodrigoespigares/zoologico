@@ -27,31 +27,5 @@
             @endif
         @endforeach
     </div>
-        <!--
-    <table class="table">
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Foto</th>
-        </tr>
-        @foreach ($resultados as $resultado)
-
-
-            @if ($resultado->visitable == 1)
-                <tr>
-                    <td>{{$resultado->nombre}}</td>
-                    <td>{{$resultado->descripcion}}</td>
-                    <td><img src="{{$foto}}" alt=""></td>
-                    <td>
-                        <a href="/rutas/ver/{{$resultado->id}}">Ver</a>
-
-                    </td>
-                </tr>
-            @endif
-        @endforeach
-
-
-    </table>
-    -->
 </x-slot>
 </x-app-layout>

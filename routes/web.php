@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RutasController;
 use App\Http\Controllers\UsuarioController;
@@ -19,10 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+Route::controller(BaseController::class)->group(function (){
+    Route::get('/','index');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

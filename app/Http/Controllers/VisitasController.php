@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CompraMailable;
 use App\Repository\GuiasRepository;
 use App\Repository\RutasRepository;
 use App\Repository\VisitaRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class VisitasController extends Controller
 {
@@ -71,6 +73,8 @@ class VisitasController extends Controller
         ]);
         $validate['user_id']=Auth::user()->id;
         $this->repoVisitas->insertar($validate);
+        Mail::to(Auth::user()->email)
+            ->send(new CompraMailable($validate));
         return redirect('/')->with('success',"Compra realizada con éxito");
     }
     public function misVisitas(){

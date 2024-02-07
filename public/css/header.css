@@ -32,6 +32,10 @@ header{
 .header__interaccion a{
     font-size: 2rem !important;
 }
+.login_register:hover{
+    color: var(--secondary) !important;
+
+}
 /*Colocacion de botones*/
 .header__userInteraction{
     /*Tamaño icono*/

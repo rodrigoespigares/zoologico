@@ -2,6 +2,13 @@
     <x-slot name="slot">
         <div class="dividir">
             <div class="dividir__long">
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{{ session()->get('success') }}</li>
+                        </ul>
+                    </div><br />
+                @endif
                 <table class="table">
                     <tr>
                         <th>Nombre</th>
@@ -34,6 +41,10 @@
                 @endif
             </div>
         </div>
-
+        @php
+            if(session()->has("success")){
+                header("Refresh:2");
+            }
+        @endphp
     </x-slot>
 </x-app-layout>

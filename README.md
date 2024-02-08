@@ -5,7 +5,7 @@ Proyecto realizado para la gestión de entradas de un zoo. Es posible gestionar 
 > [!NOTE]
 > Compatible con navegadores Chrome y Mozilla ademas de contenido responsivo
 
-> [!NOTE]
+> [!ADVERTENCE]
 > Roles permitidos para el usuario: cliente (por defecto), guia (gestiona rutas), cuidador(gestiona animales), admin(gestiona todo)
 
 ## Guia de instalación

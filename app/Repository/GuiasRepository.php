@@ -18,7 +18,7 @@ use App\Models\User;
                         ->get();
         }
         public function findId($id) {
-            return Guia::find('id')!=null?false:true;
+            return Guia::where('guia_id',$id)->get();
         }
 
         public function create($id) {

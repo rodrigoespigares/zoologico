@@ -3,17 +3,20 @@
 namespace App\Repository;
 
 use App\Models\User;
+use App\Repository\GuiasRepository;
 
 class UsuarioRepository
 {
     protected User $user;
+    protected GuiasRepository $guiasRepo;
 
     /**
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct(User $user, GuiasRepository $guiasRepo)
     {
         $this->user = $user;
+        $this->guiasRepo = $guiasRepo;
     }
     public function getAll(){
         return User::all();
@@ -38,6 +41,7 @@ class UsuarioRepository
         User::where('id', $id)->update([
             'rol'=>'cliente',
         ]);;
+        $this->guiasRepo->desactivar($id);
     }
 
 }

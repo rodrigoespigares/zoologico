@@ -73,9 +73,15 @@ class UsuarioController extends Controller
             'rol'=>['required']
         ]);
         $this->RepoUser->edit($id,$request);
-
         if($request['rol']=="guia" && !count($this->guiaRepository->findId($id)->toArray())>0){
             $this->guiaRepository->create($id);
+            
+        }elseif($request['rol']!="guia" && count($this->guiaRepository->findId($id)->toArray())>0){
+            $this->guiaRepository->desactivar($id);
+        }elseif($request['rol']=="guia" && count($this->guiaRepository->findId($id)->toArray())>0){
+            if($this->guiaRepository->findId($id)->toArray()[0]['activo']==false){
+                $this->guiaRepository->activar($id);
+            }
         }
         return redirect('/verlistadousuarios')->with('success','Se ha editado el usuario');
     }

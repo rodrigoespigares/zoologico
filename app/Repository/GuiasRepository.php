@@ -47,6 +47,16 @@ use App\Models\User;
         public function getDatosID($id) {
             return User::find($id);
         }
+        public function desactivar($id) {
+            Guia::where('guia_id', $id)->update([
+                'activo' => false,
+            ]);
+        }
+        public function activar($id) {
+            Guia::where('guia_id', $id)->update([
+                'activo' => true,
+            ]);
+        }
     }
 
 ?>

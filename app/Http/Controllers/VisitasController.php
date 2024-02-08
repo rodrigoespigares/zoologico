@@ -73,9 +73,13 @@ class VisitasController extends Controller
         ]);
         $validate['user_id']=Auth::user()->id;
         $this->repoVisitas->insertar($validate);
-        Mail::to(Auth::user()->email)
+        try {
+            Mail::to(Auth::user()->email)
             ->send(new CompraMailable($validate));
-        return redirect('/')->with('success',"Compra realizada con éxito");
+            return redirect('/')->with('success',"Compra realizada con éxito");
+        } catch (\Throwable $th) {
+            return redirect('/')->with('error',"La compra no se ha podido realizar. Intenteló más tarde");
+        }
     }
     public function misVisitas(){
         $result = $this->repoVisitas->getVisitas(Auth::user()->id);

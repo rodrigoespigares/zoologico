@@ -45,12 +45,10 @@ class RutasController extends Controller
                 return back()->withError('Error al almacenar la imagen: ' . $e->getMessage());
             }
             $validate['foto']=$nombreImagen;
-            // Puedes almacenar el nombre de la imagen en tu base de datos si es necesario
         }
 
 
         $this->repoRutas->insertar($validate);
-        //return redirect()->action([AnimalController::class, 'index']);
         return redirect('/verlistadorutas')->with('success','Se ha añadido una nueva ruta');
     }
 
@@ -68,8 +66,21 @@ class RutasController extends Controller
     }
     public function edit(string $id,Request $request)
     {
-        ##VALIDAR
-        $this->repoRutas->edit($id,$request);
+        $validate = $request->validate([
+            'nombre' => "required | min:3 | max:25",
+            'descripcion' => "required"
+        ]);
+        if ($request->hasFile('foto')) {
+            $imagen = $request->file('foto');
+            $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+            try {
+                $imagen->move(public_path('img/subidas/rutas'), $nombreImagen);
+            } catch (\Exception $e) {
+                return back()->withError('Error al almacenar la imagen: ' . $e->getMessage());
+            }
+            $validate['foto']=$nombreImagen;
+        }
+        $this->repoRutas->edit($id,$validate);
         return redirect('/verlistadorutas')->with('success','Se ha añadido un nuevo contacto');
     }
     public function destroy(string $id)

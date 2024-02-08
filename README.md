@@ -5,7 +5,10 @@ Proyecto realizado para la gestión de entradas de un zoo. Es posible gestionar 
 > [!NOTE]
 > Compatible con navegadores Chrome y Mozilla ademas de contenido responsivo
 
-> [!ADVERTENCE]
+> [!CAUTION]
+> Debes tener instalado NPM y COMPOSER para ejecutar el proyecto.
+
+> [!IMPORTANT]
 > Roles permitidos para el usuario: cliente (por defecto), guia (gestiona rutas), cuidador(gestiona animales), admin(gestiona todo)
 
 ## Guia de instalación

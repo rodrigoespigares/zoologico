@@ -34,6 +34,7 @@ use DateTime;
                 'guia.n_clientes'
             )
             ->leftJoin('guia', 'users.id', '=', 'guia.guia_id')
+            ->where('guia.activo', '=', '1')
             ->leftJoin('visitas', function ($join) use ($fecha, $horaFormateada) {
                 $join->on('users.id', '=', 'visitas.guia_id')
                     ->whereDate('visitas.fecha_visita', $fecha)

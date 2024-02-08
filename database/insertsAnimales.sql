@@ -1,0 +1,7 @@
+INSERT INTO `animales` (`id`, `nombre`, `n_cientifico`, `descripcion`, `foto`, `visitable`, `cuidador_id`, `ruta_id`, `created_at`, `updated_at`) VALUES
+(7, 'El rey', 'The King', 'Es el espécimen con mayor volumen, tanto que tuvimos que construirle otro hábitat junto al suyo por que no cabía', '1707262278_perreador.png', 1, 1, 2, '2024-02-06 22:31:18', '2024-02-06 22:31:18'),
+(8, 'Ajolote', 'Ojo por Ojo', 'Su cara te muestra lo inteligente que es', '1707262395_ajolotes.jpeg', 1, 1, 3, '2024-02-06 22:33:15', '2024-02-06 22:33:15'),
+(9, 'El cabezazos', 'Avestruz voladora', 'Este espécimen lleva quieto 2016, se tomo muy enserio el maniqui challenge', '1707262519_avestruz.jpg', 1, 1, 5, '2024-02-06 22:35:19', '2024-02-06 22:35:19'),
+(10, 'El camello', 'jorobao de notre dame', 'Este es el especimen mas visitado ya que este tiene libertad condicional para hacer contrabando de agua', '1707262646_camello.jpeg', 1, 1, 5, '2024-02-06 22:37:26', '2024-02-06 22:37:26'),
+(11, 'Llama', 'Me llaman?', 'Escupidor nato, no lo asuste', '1707262698_llama.jpg', 1, 1, 4, '2024-02-06 22:38:18', '2024-02-08 07:27:10'),
+(12, 'Pandita', 'Panda IA', 'no se mueve, cuando nos lo vendieron dijeron algo de un tal NFT', '1707262821_panda.jpg', 1, 1, 5, '2024-02-06 22:40:21', '2024-02-06 22:40:21');

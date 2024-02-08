@@ -1,9 +1,10 @@
 <x-app-layout>
     <x-slot name="slot">
-       
+
     <table class="table">
         <tr>
             <th>Fecha visita</th>
+            <th>Hora</th>
             <th>Número de entradas</th>
         </tr>
         @foreach ($rutas as $ruta)
@@ -20,6 +21,7 @@
                             }
                         @endphp
                     </td>
+                    <td>{{$ruta->hora}}</td>
                     <td>{{$ruta->n_entradas}}</td>
                     @if (strtotime($ruta->fecha_visita)>time())
                         <td><a href="/visita/cancelar/{{$ruta->id}}">Cancelar</a></td>

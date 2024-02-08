@@ -17,6 +17,10 @@ use App\Models\User;
                         ->select('guia.*', 'users.*') // Selecciona todas las columnas de ambas tablas
                         ->get();
         }
+        public function findId($id) {
+            return Guia::where('guia_id',$id)->get();
+        }
+
         public function create($id) {
             Guia::create([
                 'guia_id'=>$id,

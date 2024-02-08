@@ -57,7 +57,7 @@ class UsuarioController extends Controller
 
         event(new Registered($user));
 
-        if($user->toArray()['rol']=="guia"){
+        if($user->toArray()['rol']=="guia" && !$this->guiaRepository->findId($user->toArray()['id'])){
             $this->guiaRepository->create($user->toArray()['id']);
         }
 
@@ -72,7 +72,7 @@ class UsuarioController extends Controller
             'rol'=>['required']
         ]);
         $this->RepoUser->edit($id,$request);
-        if($request['rol']=="guia"){
+        if($request['rol']=="guia" && !$this->guiaRepository->findId($id)){
             $this->guiaRepository->create($id);
         }
         return redirect('/verlistadousuarios')->with('success','Se ha editado el usuario');

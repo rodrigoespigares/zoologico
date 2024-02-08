@@ -97,8 +97,14 @@ class AnimalController extends Controller
      */
     public function edit(string $id,Request $request)
     {
-        ##VALIDAR
-        $this->repository->edit($id,$request);
+        $validate = $request->validate([
+            'nombre' => "required | min:3 | max:25",
+            'n_cientifico' => "required | min:3 | max:25",
+            'descripcion' => "required",
+            'visitable' => "required",
+            'ruta_id'=>"required"
+        ]);
+        $this->repository->edit($id,$validate);
         return redirect('/verlistadoanimales')->with('success','Se ha añadido un nuevo contacto');
     }
 

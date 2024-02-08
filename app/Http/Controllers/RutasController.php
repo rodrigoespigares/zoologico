@@ -32,8 +32,6 @@ class RutasController extends Controller
     }
     public function store(Request $request)
     {
-
-
         $validate = $request->validate([
             'nombre' => "required | min:3 | max:25",
             'descripcion' => "required"

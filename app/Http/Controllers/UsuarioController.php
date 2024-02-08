@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repository\UsuarioRepository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
@@ -15,25 +16,25 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
-    protected User $user;
+    protected UsuarioRepository $RepoUser;
     protected GuiasRepository $guiaRepository;
     /**
      * @param $user
      */
-    public function __construct( User $user, GuiasRepository $guiaRepository)
+    public function __construct( UsuarioRepository $RepoUser, GuiasRepository $guiaRepository)
     {
-        $this->user = $user;
+        $this->RepoUser = $RepoUser;
         $this->guiaRepository = $guiaRepository;
     }
 
     public function index()
     {
-        $result = User::all();
+        $result = $this->RepoUser->getAll();
         return view('usuario.lista', ['resultados' => $result]);
     }
     public function create()
     {
-        $result = User::all();
+        $result = $this->RepoUser->getAll();
         return view('usuario.create', ['usuarios'=>$result]);
     }
     public function almacenar(Request $request): RedirectResponse
@@ -45,13 +46,14 @@ class UsuarioController extends Controller
             'rol'=>['required']
         ]);
 
-        $user = User::create([
+        $user = [
             'name' => $request->name,
             'subname' => $request->subname,
             'email' => $request->email,
             'rol'=> $request->rol,
             'password' => Hash::make($request->password),
-        ]);
+        ];
+        $user= $this->RepoUser->insertar($user);
 
         event(new Registered($user));
 
@@ -65,13 +67,7 @@ class UsuarioController extends Controller
     public function edit(string $id,Request $request)
     {
         ##VALIDAR
-        User::where('id', $id)->update([
-            'name'=>$request['name'],
-            'subname' => $request['subname'],
-            'email'=>$request['email'],
-            'rol'=>$request['rol']
-        ]);
-
+        $this->RepoUser->edit($id,$request);
         if($request['rol']=="guia"){
             $this->guiaRepository->create($id);
         }
@@ -79,9 +75,7 @@ class UsuarioController extends Controller
     }
     public function destroy(string $id)
     {
-        User::where('id', $id)->update([
-            'rol'=>'cliente',
-        ]);;
+        $this->RepoUser->eliminar($id);
         return redirect('/verlistadousuarios')->with('success','Se cambiado el rol a cliente');
     }
 }

@@ -38,7 +38,7 @@ use App\Models\Animal;
                 'n_cientifico' => $data['n_cientifico'],
                 'descripcion' => $data['descripcion'],
                 'visitable' => $data['visitable']=='true'?true:false,
-                'ruta_id' => $data['ruta'],
+                'ruta_id' => $data['ruta_id'],
             ]);
         }
     }

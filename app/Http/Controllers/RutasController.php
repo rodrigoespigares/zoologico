@@ -68,7 +68,8 @@ class RutasController extends Controller
     {
         $validate = $request->validate([
             'nombre' => "required | min:3 | max:25",
-            'descripcion' => "required"
+            'descripcion' => "required",
+            'visitable'=> "required"
         ]);
         if ($request->hasFile('foto')) {
             $imagen = $request->file('foto');

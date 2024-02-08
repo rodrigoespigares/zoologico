@@ -21,7 +21,7 @@ class UsuarioRepository
     public function insertar($usuario) {
         return User::create([
             'name' => $usuario['name'],
-            'subname' => $usuario['descripcion'],
+            'subname' => $usuario['subname'],
             'email' => $usuario['email'],
             'password' => $usuario['password'],
             'rol' => $usuario['rol'],
@@ -30,9 +30,7 @@ class UsuarioRepository
     public function edit($id,$data) {
         User::where('id', $id)->update([
             'name' => $data['name'],
-            'subname' => $data['descripcion'],
-            'email' => $data['email'],
-            'password' => $data['password'],
+            'subname' => $data['subname'],
             'rol' => $data['rol'],
         ]);
     }

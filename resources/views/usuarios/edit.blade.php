@@ -22,12 +22,14 @@
                 <input type="text" class="form-control text-primary" name="subname" id="subname" value="{{isset($user->subname)?$user->subname:""}}">
             </div>
             <div class="form-group">
-                <label for="email">Gmail</label>
-                <input type="email" class="form-control text-primary" name="email" id="email" value="{{isset($user->email)?$user->email:""}}">
-            </div>
-            <div class="form-group">
                 <label for="rol">Rol</label>
-                <input type="text" class="form-control text-primary" name="rol" id="rol" value="{{isset($user->rol)?$user->rol:""}}">
+                <select name="rol" id="rol">
+                    <option value="guia" {{$user->rol=="guia"?"selected":""}}>Guia</option>
+                    <option value="cliente" {{$user->rol=="cliente"?"selected":""}}>Cliente</option>
+                    <option value="admin" {{$user->rol=="admin"?"selected":""}}>Admin</option>
+                    <option value="cuidador" {{$user->rol=="cuidador"?"selected":""}}>Cuidador</option>
+                </select>
+
             </div>
         <button type="submit" class="btn btn-primary-outline">Guardar</button>
         </form>

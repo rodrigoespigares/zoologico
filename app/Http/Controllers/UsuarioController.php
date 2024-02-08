@@ -69,7 +69,6 @@ class UsuarioController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'subname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'rol'=>['required']
         ]);
         $this->RepoUser->edit($id,$request);
